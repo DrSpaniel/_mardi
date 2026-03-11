@@ -1,0 +1,250 @@
+[gd_scene load_steps=14 format=3 uid="uid://dpd4y6xfce7c4"]
+
+[ext_resource type="Script" uid="uid://b2m324gp5gnk4" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://dwdvppm4khjay" path="res://assets/textures/viewmodels/fist.png" id="2_qhqgy"]
+
+[sub_resource type="Shader" id="Shader_tbgi4"]
+code = "shader_type canvas_item;
+uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear_mipmap;
+uniform float pixel_size : hint_range(1, 512) = 64.0;
+
+void fragment() {
+    vec2 uv = SCREEN_UV;
+    uv = floor(uv * pixel_size) / pixel_size;
+    COLOR = texture(SCREEN_TEXTURE, uv);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tefeu"]
+shader = SubResource("Shader_tbgi4")
+shader_parameter/pixel_size = 64.0
+
+[sub_resource type="Animation" id="Animation_jyhfs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tbgi4"]
+resource_name = "hardlanding"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.261799, 0, 0.0349066), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.1, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_sugp2"]
+resource_name = "jumping"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.0523599, 0, 0.0349066), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.1, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tefeu"]
+resource_name = "roll"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.266667, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(6.28319, 0, 0), Vector3(6.28319, 0, 0.139626), Vector3(3.14159, 0, 0.0349066), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.8, 0), Vector3(0, -0.8, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_o6xl0"]
+resource_name = "softlanding"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.0261799, 0, 0.00872665), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.02, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tbgi4"]
+_data = {
+&"RESET": SubResource("Animation_jyhfs"),
+&"hardlanding": SubResource("Animation_tbgi4"),
+&"jumping": SubResource("Animation_sugp2"),
+&"roll": SubResource("Animation_tefeu"),
+&"softlanding": SubResource("Animation_o6xl0")
+}
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sugp2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tbgi4"]
+height = 1.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jyhfs"]
+height = 1.2
+
+[node name="player" type="CharacterBody3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_g2els")
+wall_kick_strength_vert = 6
+
+[node name="neck" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="head" type="Node3D" parent="neck"]
+
+[node name="eyes" type="Node3D" parent="neck/head"]
+
+[node name="Camera3D" type="Camera3D" parent="neck/head/eyes"]
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="neck/head/eyes/Camera3D"]
+
+[node name="Control" type="Control" parent="neck/head/eyes/Camera3D/CanvasLayer2"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="neck/head/eyes/Camera3D/CanvasLayer2/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 690.0
+offset_top = 347.0
+offset_right = 1130.0
+offset_bottom = 717.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_qhqgy")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="neck/head/eyes/Camera3D"]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="neck/head/eyes/Camera3D/CanvasLayer"]
+material = SubResource("ShaderMaterial_tefeu")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="interactcast" type="RayCast3D" parent="neck/head/eyes"]
+transform = Transform3D(-1.00231, 4.38122e-08, 4.38122e-08, -4.38122e-08, -4.38122e-08, -1.00231, -4.38122e-08, -1.00231, 4.38122e-08, 0, 0, 0)
+target_position = Vector3(0, 3, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="neck/head/eyes"]
+libraries = {
+&"": SubResource("AnimationLibrary_tbgi4")
+}
+
+[node name="standing_collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_sugp2")
+
+[node name="crouchjump_collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("CapsuleShape3D_tbgi4")
+disabled = true
+
+[node name="crouched_collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+shape = SubResource("CapsuleShape3D_jyhfs")
+disabled = true
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 2, 0)

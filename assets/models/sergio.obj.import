@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://csw45pqc0bbfr"
+path="res://.godot/imported/sergio.obj-c3e8dc756c77724674ec09852401aacb.mesh"
+
+[deps]
+
+files=["res://.godot/imported/sergio.obj-c3e8dc756c77724674ec09852401aacb.mesh"]
+
+source_file="res://assets/models/sergio.obj"
+dest_files=["res://.godot/imported/sergio.obj-c3e8dc756c77724674ec09852401aacb.mesh", "res://.godot/imported/sergio.obj-c3e8dc756c77724674ec09852401aacb.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
